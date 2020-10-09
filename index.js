@@ -41,6 +41,9 @@ app.get("/LivreOr", (req, res) => {
   });
 });
 // ajouter un message (query)
+//RESTer
+// body: id, name, msg, note et le contenu souhaité
+// headers : content-type application/x-www-form-urlencoded
 app.post("/LivreOr/Ajouter", (req, res) => {
   console.log(req.body.name);
   let msgID = req.body.id;
@@ -48,7 +51,7 @@ app.post("/LivreOr/Ajouter", (req, res) => {
   let msgMsg = req.body.msg;
   let msgNote = req.body.note;
   console.log(`Ajout msg ID ${msgID} de ${msgName} contenant ${msgMsg} et noté ${msgNote}`);
-  let requeteSQL = "IN>SERT INTO tlivre (id, name, message, evaluation) VALUES";
+  let requeteSQL = "INSERT INTO tlivre (id, name, message, evaluation) VALUES";
   requeteSQL = requeteSQL + `( ${msgID} , '${msgName}', '${msgMsg}', ${msgNote})`;
   console.log("Requete : " + requeteSQL);
   mysqlconnexion.query(requeteSQL, (err, lignes, champs) => {
